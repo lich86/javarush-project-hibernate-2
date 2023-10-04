@@ -8,8 +8,6 @@ import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
 import java.util.Set;
-
-import java.time.Year;
 import java.util.HashSet;
 
 @Entity
