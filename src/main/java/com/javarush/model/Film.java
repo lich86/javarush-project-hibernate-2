@@ -1,14 +1,16 @@
 package com.javarush.model;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.util.Objects;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import static java.util.Objects.isNull;
 
 @Entity
 @Table(name = "film", schema = "movie")
@@ -45,18 +47,41 @@ public class Film extends BaseEntity{
     Rating rating;
     @Column(name = "special_features",
             columnDefinition = "set('Trailers', 'Commentaries', 'Deleted Scenes', 'Behind the Scenes')")
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
     String specialFeatures;
     @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "films")
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "film_category",
+            joinColumns =  @JoinColumn(name="film_id", columnDefinition = "smallint"),
+            inverseJoinColumns= @JoinColumn(name="category_id", columnDefinition = "tinyint")
+    )
     @ToString.Exclude
     Set<Category> categories = new HashSet<>();
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name = "film_category",
-            joinColumns =  @JoinColumn(name="category_id", columnDefinition = "tinyint"),
-            inverseJoinColumns= @JoinColumn(name="film_id", columnDefinition = "smallint")
+    @JoinTable(name = "film_actor",
+            joinColumns =  @JoinColumn(name="film_id", columnDefinition = "smallint"),
+            inverseJoinColumns= @JoinColumn(name="actor_id", columnDefinition = "smallint")
     )
     @ToString.Exclude
     Set<Actor> actors = new HashSet<>();
 
+    public Set<SpecialFeature> getSpecialFeatures() {
+        Set<SpecialFeature> result = Stream.of(specialFeatures.split(",", -1))
+                .map(SpecialFeature::getFeatureByValue)
+                .filter(Objects::nonNull)
+                .collect(Collectors.toSet());
+        return result;
+    }
+
+    public void setSpecialFeatures(Set<SpecialFeature> features) {
+        if (isNull(features) || features.isEmpty()) {
+            specialFeatures = null;
+        } else {
+            specialFeatures = features.stream()
+                    .map(SpecialFeature::getValue)
+                    .collect(Collectors.joining(","));
+        }
+    }
 }

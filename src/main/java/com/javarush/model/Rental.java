@@ -18,7 +18,7 @@ public class Rental extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "rental_id", columnDefinition = "int")
-    Integer rental_id;
+    Integer rentalId;
     @CreationTimestamp
     @Column(name = "rental_date", columnDefinition = "datetime")
     LocalDateTime rentalDate;

@@ -22,4 +22,9 @@ public class FilmText extends BaseEntity{
     String title;
     @Column(name = "description", columnDefinition = "text")
     String description;
+
+    public void setFilm(Film film) {
+        this.film = film;
+        this.film_id = film.getFilmId();
+    }
 }

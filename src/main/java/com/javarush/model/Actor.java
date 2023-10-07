@@ -12,7 +12,7 @@ import java.util.Set;
 @Entity
 @Table(name = "actor", schema = "movie")
 @Data
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = false, exclude = "films")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Actor extends BaseEntity{
     @Id

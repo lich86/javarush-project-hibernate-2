@@ -13,7 +13,7 @@ import java.util.Set;
 @Entity
 @Table(name = "category", schema = "movie")
 @Data
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = false, exclude = "films")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Category extends BaseEntity{
     @Id
@@ -25,8 +25,8 @@ public class Category extends BaseEntity{
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "film_category",
-            joinColumns =  @JoinColumn(name="film_id"),
-            inverseJoinColumns= @JoinColumn(name="category_id")
+            joinColumns =  @JoinColumn(name="category_id"),
+            inverseJoinColumns= @JoinColumn(name="film_id")
     )
     @ToString.Exclude
     private Set<Film> films = new HashSet<>();
