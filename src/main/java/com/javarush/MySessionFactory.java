@@ -1,5 +1,6 @@
 package com.javarush;
 
+import com.javarush.constants.DBConstants;
 import com.javarush.model.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -11,13 +12,13 @@ public class MySessionFactory {
     private final SessionFactory sessionFactory;
     private MySessionFactory() {
         Properties properties = new Properties();
-        properties.put(Environment.DRIVER, "com.mysql.cj.jdbc.Driver");
-        properties.put(Environment.URL, "jdbc:mysql://localhost:3306/movie");
-        properties.put(Environment.DIALECT, "org.hibernate.dialect.MySQL8Dialect");
-        properties.put(Environment.USER, "root");
-        properties.put(Environment.PASS, "root");
-        properties.put(Environment.HBM2DDL_AUTO, "update");
-        properties.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
+        properties.put(Environment.DRIVER, DBConstants.DB_DRIVER);
+        properties.put(Environment.URL, DBConstants.DB_URL);
+        properties.put(Environment.DIALECT, DBConstants.DB_DIALECT);
+        properties.put(Environment.USER, DBConstants.DB_USER);
+        properties.put(Environment.PASS, DBConstants.DB_PASS);
+        properties.put(Environment.HBM2DDL_AUTO, DBConstants.DB_HBM2DDL_AUTO);
+        properties.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, DBConstants.DB_CURRENT_SESSION_CONTEXT_CLASS);
         sessionFactory = new Configuration()
                 .setProperties(properties)
                 .addAnnotatedClass(Actor.class)

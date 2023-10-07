@@ -23,4 +23,5 @@ public class SQLConstants {
     public static final String selectFilmByTitle = "from Film where title = :title";
     public static final String selectCategoryByName = "from Category where name = :name";
     public static final String selectActorByName = "from Actor where firstName = :firstName and lastName = :lastName";
+    public static final String selectStaffByStore = "from Staff where store = :store";
 }

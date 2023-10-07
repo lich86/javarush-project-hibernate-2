@@ -1,7 +1,6 @@
 package com.javarush.dao;
 
 import com.javarush.constants.SQLConstants;
-import com.javarush.model.Film;
 import com.javarush.model.Inventory;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;

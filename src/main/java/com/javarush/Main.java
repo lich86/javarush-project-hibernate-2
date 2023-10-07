@@ -22,7 +22,6 @@ public class Main {
     private final AddressDAO addressDAO;
     private final CategoryDAO categoryDAO;
     private final CityDAO cityDAO;
-    private final CountryDAO countryDAO;
     private final CustomerDAO customerDAO;
     private final FilmDAO filmDAO;
     private final FilmTextDAO filmTextDAO;
@@ -41,7 +40,6 @@ public class Main {
         addressDAO = new AddressDAO(sessionFactory);
         categoryDAO = new CategoryDAO(sessionFactory);
         cityDAO = new CityDAO(sessionFactory);
-        countryDAO = new CountryDAO(sessionFactory);
         customerDAO = new CustomerDAO(sessionFactory);
         filmDAO = new FilmDAO(sessionFactory);
         filmTextDAO = new FilmTextDAO(sessionFactory);
@@ -97,6 +95,8 @@ public class Main {
                 address.setPostalCode(reader.readLine());
                 System.out.println("Please enter phone number");
                 address.setPhone(reader.readLine());
+
+                addressDAO.save(address);
 
                 customer = new Customer();
                 customer.setAddress(address);
@@ -170,6 +170,8 @@ public class Main {
                 rental.setStaff(staff);
                 rental.setRentalDate(LocalDateTime.now());
 
+                rentalDAO.save(rental);
+
                 Payment payment = new Payment();
                 payment.setStaff(staff);
                 payment.setCustomer(customer);
@@ -177,7 +179,6 @@ public class Main {
                 payment.setPaymentDate(LocalDateTime.now());
                 payment.setAmount(film.getRentalRate()*film.getRentalDuration());
 
-                rentalDAO.save(rental);
                 paymentDAO.save(payment);
 
             } catch (IOException e) {
