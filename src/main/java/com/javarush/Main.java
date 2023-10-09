@@ -34,6 +34,8 @@ public class Main {
 
     private final SessionFactory sessionFactory;
 
+    private final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
     public Main() {
         sessionFactory = MySessionFactory.getSessionFactory();
         actorDAO = new ActorDAO(sessionFactory);
@@ -51,19 +53,20 @@ public class Main {
         storeDAO = new StoreDAO(sessionFactory);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Main main = new Main();
         main.addCustomer();
         main.returnRentedInventory();
         main.rentInventory();
         main.addFilm();
+        main.reader.close();
     }
 
     public Customer addCustomer() {
         Customer customer;
         try(Session session = sessionFactory.getCurrentSession()) {
             Transaction transaction = session.beginTransaction();
-            try(BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
+            try {
                 System.out.println("Please enter your store number (1 or 2):");
                 Store store = storeDAO.getByID(Integer.parseInt(reader.readLine()));
 
@@ -123,7 +126,7 @@ public class Main {
     public void returnRentedInventory() {
         try (Session session = sessionFactory.getCurrentSession()) {
             Transaction transaction = session.beginTransaction();
-            try(BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
+            try {
                 System.out.println("Please enter inventory id:");
                 int inventoryId = Integer.parseInt(reader.readLine());
                 Inventory inventory = inventoryDAO.getByID(inventoryId);
@@ -139,7 +142,7 @@ public class Main {
     public void rentInventory() {
         try (Session session = sessionFactory.getCurrentSession()) {
             Transaction transaction = session.beginTransaction();
-            try(BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
+            try {
                 System.out.println("Please enter customer's first name");
                 String firstName = reader.readLine();
                 System.out.println("Please enter customer's last name");
@@ -192,7 +195,7 @@ public class Main {
         try (Session session = sessionFactory.getCurrentSession()) {
             Transaction transaction = session.beginTransaction();
             Film film = new Film();
-            try(BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
+            try {
 
                 System.out.println("Please enter film title:");
                 film.setTitle(reader.readLine());
