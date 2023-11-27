@@ -15,7 +15,7 @@ public class Store extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "store_id", columnDefinition = "tinyint")
-    Integer storeId;
+    Byte storeId;
     @OneToOne
     @JoinColumn(name = "manager_staff_id")
     Staff staff;

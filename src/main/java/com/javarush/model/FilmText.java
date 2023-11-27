@@ -14,7 +14,7 @@ import lombok.experimental.FieldDefaults;
 public class FilmText extends BaseEntity{
     @Id
     @Column(name = "film_id", columnDefinition = "smallint")
-    Integer film_id;
+    Short film_id;
     @OneToOne
     @JoinColumn(name = "film_id")
     Film film;

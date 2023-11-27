@@ -21,7 +21,7 @@ public class Film extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "film_id", columnDefinition = "smallint")
-    Integer filmId;
+    Short filmId;
     @Column(name = "title", columnDefinition = "varchar(128)")
     String title;
     @Column(name = "description", columnDefinition = "text")

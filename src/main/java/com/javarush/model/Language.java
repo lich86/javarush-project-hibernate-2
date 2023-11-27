@@ -15,7 +15,7 @@ public class Language extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "language_id", columnDefinition = "tinyint")
-    Integer languageId;
+    Byte languageId;
     @Column(name = "name", columnDefinition = "CHAR(20)")
     String name;
 }

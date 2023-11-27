@@ -18,7 +18,7 @@ public class Payment extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "payment_id", columnDefinition = "smallint")
-    Integer paymentId;
+    Short paymentId;
     @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     @JoinColumn(name = "customer_id")
     Customer customer;

@@ -16,7 +16,7 @@ public class Staff extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "staff_id", columnDefinition = "tinyint")
-    Integer staffId;
+    Byte staffId;
     @Column(name = "first_name", columnDefinition = "varchar(45)")
     String firstName;
     @Column(name = "last_name", columnDefinition = "varchar(45)")

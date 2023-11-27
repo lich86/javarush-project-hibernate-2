@@ -15,7 +15,7 @@ public class Country extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "country_id", columnDefinition = "smallint")
-    Integer country_id;
+    Short country_id;
     @Column(name = "country", columnDefinition = "varchar(50)")
     String name;
 }

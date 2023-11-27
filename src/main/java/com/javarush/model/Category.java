@@ -19,7 +19,7 @@ public class Category extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "category_id", columnDefinition = "tinyint")
-    Integer categoryId;
+    Byte categoryId;
     @Column(name = "name", columnDefinition = "varchar(25)")
     String name;
     @ManyToMany(fetch = FetchType.LAZY,

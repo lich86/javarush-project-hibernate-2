@@ -34,10 +34,11 @@ public class Main {
 
     private final SessionFactory sessionFactory;
 
-    private final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    private final BufferedReader reader;
 
     public Main() {
         sessionFactory = MySessionFactory.getSessionFactory();
+        reader = new BufferedReader(new InputStreamReader(System.in));
         actorDAO = new ActorDAO(sessionFactory);
         addressDAO = new AddressDAO(sessionFactory);
         categoryDAO = new CategoryDAO(sessionFactory);

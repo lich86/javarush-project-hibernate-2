@@ -19,7 +19,7 @@ public class Customer extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "customer_id", columnDefinition = "smallint")
-    Integer customerId;
+    Short customerId;
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "store_id")
     Store store;

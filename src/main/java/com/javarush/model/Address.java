@@ -15,7 +15,7 @@ public class Address extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "address_id", columnDefinition = "smallint")
-    Integer addressId;
+    Short addressId;
     @Column(name = "address", columnDefinition = "varchar(50)")
     String address;
     @Column(name = "address2", columnDefinition = "varchar(50)")
